@@ -51,7 +51,7 @@ def detect_panic(drop, timeframe):
 	ticker1 = polo.returnTicker()
 	sleep(timeframe)
 	ticker2 = polo.returnTicker()	
-	mean = (ticker2 + ticker1) / 2
+	mean = (ticker1[market]['last'] + ticker2[market]['last']) / 2
 
 	for market in ticker1:
 		delta = (float(ticker1[market]['last']) - float(ticker2[market]['last'])) / mean
@@ -65,8 +65,8 @@ def detect_panic(drop, timeframe):
 	
 	spin.stop()
 if __name__ == "__main__":
-	drop = -0.05
-	timeframe = 20 * 60 #minutes
+	drop = -0.001
+	timeframe = 2 * 60 #minutes
 	
 	try:
 		print "[+] Starting PoloPanic Scanner..."	
