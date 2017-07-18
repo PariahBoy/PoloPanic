@@ -51,10 +51,9 @@ def detect_panic(drop, timeframe):
 	ticker1 = polo.returnTicker()
 	sleep(timeframe)
 	ticker2 = polo.returnTicker()	
-	mean = (ticker1[market]['last'] + ticker2[market]['last']) / 2
 
 	for market in ticker1:
-		delta = (float(ticker1[market]['last']) - float(ticker2[market]['last'])) / mean
+		delta = (float(ticker1[market]['last']) - float(ticker2[market]['last'])) / ((ticker1[market]['last'] + ticker2[market]['last']) / 2)
 		if (delta < drop):
 			alert_list.append(market)
 
